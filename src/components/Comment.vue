@@ -7,7 +7,7 @@
     </div>
     <div class="card-footer">
       <a href="" class="comment-author">
-        <img :src="comment.author.image" class="comment-author-img">
+        <img :src="comment.author.image || defaultUserImage" class="comment-author-img">
       </a>
       <router-link class="comment-author" :to="{ name: 'profile', params: { username: comment.author.username } }">
         {{ comment.author.username }}
@@ -38,7 +38,10 @@
       },
       ...mapGetters([
         'currentUser'
-      ])
+      ]),
+      defaultUserImage () {
+        return 'https://static.productionready.io/images/smiley-cyrus.jpg'
+      }
     },
     methods: {
       destroy (slug, commentId) {
